@@ -1,1 +1,15 @@
-# facebook-dashboard
+# Project background
+
+## Introduction
+Polling and focus groups give us valuable insights into public opinion, but they are only part of the picture. To understand how people really think about politics, we also need to pay attention to the everyday spaces where political conversations happen naturally.
+Across local communities, in WhatsApp chats, Facebook groups, high-streets and neighbourhood conversations, people talk about politics in ways that don’t always show up in formal research. These grounded, informal discussions often reveal concerns, hopes and perspectives shaped by lived experience and local context - the kinds of things that may not emerge in structured polling or focus groups.
+By supplementing traditional methods with richer listening to these real-world conversations, we gain a more complete understanding of what matters to people. Politics makes a fundamental error when it listens narrowly, so this report asks a simple question: how do we listen better? How do we tune into the full range of voices and conversations happening across the country, and build approaches that start with what people are actually saying on the ground?
+Methodology
+In this project, we analysed 1,000 local Facebook groups over a full year in the run-up to the last General Election, using an AI-supported methodology that combined large-scale scraping with modern classification techniques. Because social media conversations are fundamentally text-based, recent advances in large language models make it possible to accurately sort, label and interpret these discussions at scale. We used LLMs to classify posts, identify themes, spot emerging issues, and track how political conversations unfolded organically across local communities.
+
+
+## Identifying political posts
+Our initial look at the local Facebook group content showed that most of it (over 90%) wasn’t political at all. Our goal became to use a large language model (LLM) to filter and identify posts that might have political relevance.
+Because many local groups discourage outright political discussion, we found that political content tends to be subtle: people might hint at issues, talk about local services, or comment on decisions made by the council or government without naming them directly. To capture this kind of conversation, we set a deliberately broad definition of “political.” We included any post that mentioned local or national government, or that prompted any kind of political reaction in the comments.
+To check how well the AI was performing, we carried out a human review of a random sample of 200 posts using the same criteria. The results showed that the LLM tended to include slightly more posts as political than a human would but crucially, it almost never missed political content. In the sample, there was only one political post the humans identified that the LLM did not, giving the model a very high recall rate of 0.98.
+Based on this strong recall, we concluded that the LLM was effective at capturing nearly all political posts while filtering out the vast majority of everyday, non-political content.
