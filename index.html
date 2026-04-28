@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Public Discourse Intelligence — Campaigner Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* DARK MODE:
   :root {
@@ -85,6 +85,13 @@
     font-family: 'poppins', sans-serif;
     font-size: 11px; color: #FFFFFF;
   }
+
+  .topbar-img {
+    width: 70px;
+    height: auto;
+    object-fit: cover;
+    display: block;  
+}
 
   /* LAYOUT */
   .layout {
@@ -751,7 +758,13 @@
     border-top: 1px solid var(--border);
     font-family: 'DM Mono', monospace;
     font-size: 11px; color: var(--text-muted);
-    display: flex; justify-content: space-between;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logos {
+    display: flex; align-items: center; gap: 20px;
+  }
+  .footer-logo-img {
+    height: 28px; width: auto; opacity: 0.75;
   }
 
   /* FILTER CHIPS */
@@ -803,8 +816,7 @@
 
 <div class="topbar">
   <div class="topbar-brand">
-    <div class="topbar-logo" onclick="showOverview()" style="cursor:pointer"> Facebook Groups Analysis: Campaigner Dashboard</div>
-  <!--<div class="topbar-tag">Campaigner Dashboard</div>-->  
+    <div class="topbar-logo" onclick="showOverview()" style="cursor:pointer">Facebook Groups Analysis: Campaigner Dashboard</div>
   </div>
   <div class="topbar-meta">
     <span class="dot-live pulse"></span>
@@ -897,8 +909,11 @@
         </div>
 
         <div class="footer">
-          <span>Data: Categorum AI · Local Facebook Groups · UK</span>
-          <span>Jul 2023 – Jul 2024</span>
+          <div class="footer-logos">
+            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
+            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+          </div>
+          <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
@@ -908,8 +923,11 @@
           <p class="page-subtitle">Across the analysis, one theme in particular kept resurfacing: <strong>people's engagement with politics is predominantly local and personal.</strong> People are consistently more concerned by potholes, grocery prices and antisocial behaviour that they personally witness than any wider policy. People are by far more interested in what they see, feel, and experience in their daily lives than national rhetoric or abstract political debates. And they often struggle to connect the two, unsure how national politics relates to their local reality, reflecting generally poor communication by political bodies on what powers they have and the reasons behind their decisions. This disconnect has consequences, leading to widespread disengagement, hostility and a sense that politics is distant and that all politicians are inherently corrupt.</p>
         </div>
         <div class="footer">
-          <span>Data: Categorum AI · Local Facebook Groups · UK</span>
-          <span>Jul 2023 – Jul 2024</span>
+          <div class="footer-logos">
+            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
+            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+          </div>
+          <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
@@ -923,8 +941,11 @@
 
         </div>
         <div class="footer">
-          <span>Data: Categorum AI · Local Facebook Groups · UK</span>
-          <span>Jul 2023 – Jul 2024</span>
+          <div class="footer-logos">
+            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
+            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+          </div>
+          <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
@@ -934,8 +955,11 @@
           <p class="home-tab-placeholder">Add about us content here.</p>
         </div>
         <div class="footer">
-          <span>Data: Categorum AI · Local Facebook Groups · UK</span>
-          <span>Jul 2023 – Jul 2024</span>
+          <div class="footer-logos">
+            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
+            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+          </div>
+          <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
@@ -968,8 +992,11 @@
       <div class="subcat-grid" id="subcatGrid"></div>
 
       <div class="footer">
-        <span>Data: Categorum AI · Local Facebook Groups · UK</span>
-        <span>Click a subcategory to expand summaries, quotes &amp; narratives</span>
+        <div class="footer-logos">
+          <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
+          <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+        </div>
+        <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
       </div>
     </div>
 
