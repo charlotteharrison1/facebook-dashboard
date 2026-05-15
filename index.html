@@ -393,11 +393,29 @@
     font-size: 9px; color: var(--text-muted);
     text-transform: uppercase; letter-spacing: 0.08em;
   }
-  .subcat-chevron {
-    color: var(--text-muted); font-size: 14px;
-    transition: transform 0.2s; flex-shrink: 0;
+  .subcat-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
   }
-  .subcat-card.expanded .subcat-chevron { transform: rotate(180deg); }
+  .subcat-see-more {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    transition: color 0.15s;
+  }
+  .subcat-card:hover .subcat-see-more { color: var(--accent); }
+  .subcat-see-more .arrow { transition: transform 0.2s; display: inline-block; }
+  .subcat-card.expanded .subcat-see-more .arrow { transform: rotate(90deg); }
+  .subcat-card.expanded .subcat-see-more .see-label { display: none; }
+  .subcat-card.expanded .subcat-see-more::before { content: 'See less'; }
 
   .subcat-body {
     display: none;
@@ -525,16 +543,16 @@
   }
   .sort-label {
     font-family: 'DM Mono', monospace;
-    font-size: 10px; color: var(--text-muted);
+    font-size: 10px; color: var(--text-dim);
     text-transform: uppercase; letter-spacing: 0.08em;
   }
   .sort-btn {
     font-family: 'DM Mono', monospace;
     font-size: 10px; letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: var(--surface3);
+    border: 1px solid var(--border-bright);
     padding: 5px 10px; border-radius: 4px;
     cursor: pointer;
     transition: all 0.15s;
@@ -696,7 +714,8 @@
   .switch-label {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--text-dim);
+    font-weight: 500;
+    color: var(--text);
     letter-spacing: 0.03em;
   }
   .switch {
@@ -901,12 +920,120 @@
     border-radius: 50%; background: var(--positive);
     display: inline-block; margin-right: 6px;
   }
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  /* ── SIDEBAR OVERLAY ── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 98;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    /* Topbar */
+    .topbar { padding: 0 16px; gap: 12px; }
+    .topbar-logo { font-size: 13px; letter-spacing: 0; }
+    .topbar-meta { display: none; }
+    .hamburger { display: flex; }
+
+    /* Sidebar — slides in over content */
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      z-index: 99;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-overlay.open { display: block; }
+
+    /* Main — full width */
+    .main { margin-left: 0; padding: 16px; }
+
+    /* Stat grid */
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-value { font-size: 22px; }
+
+    /* Overview grid already 1-col at 900px */
+
+    /* Home tabs — scroll horizontally */
+    .home-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+    .home-tab-btn { white-space: nowrap; padding: 10px 14px; }
+
+    /* Sort controls — wrap */
+    .sort-controls { flex-wrap: wrap; gap: 6px; }
+
+    /* Detail header */
+    .detail-header { flex-direction: column; padding: 16px; }
+    .detail-title { font-size: 20px; }
+    .detail-stats-row { gap: 14px; }
+    .detail-stat-val { font-size: 18px; }
+
+    /* Subcat header — stack metrics below */
+    .subcat-header { flex-wrap: wrap; gap: 10px; }
+    .subcat-right { flex-direction: row; width: 100%; justify-content: flex-end; flex-wrap: wrap; }
+
+    /* Issue overview section already stacks */
+
+    /* Pie chart already handled */
+
+    /* Switch row */
+    .switch-row { flex-wrap: wrap; }
+
+    /* Footer */
+    .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-logos { gap: 14px; }
+
+    /* Section label */
+    .section-label { font-size: 22px; }
+
+    /* Page padding */
+    .page-title { font-size: 24px; }
+
+    /* Back button */
+    .back-btn { font-size: 12px; }
+  }
+
+  @media (max-width: 480px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-card { padding: 14px; }
+    .stat-value { font-size: 18px; }
+    .home-tab-btn { font-size: 10px; padding: 8px 10px; }
+    .detail-stats-row { gap: 10px; }
+    .subcat-metrics { gap: 10px; }
+    .subcat-metric-val { font-size: 14px; }
+    .topbar-logo { font-size: 11px; }
+  }
+
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="topbar-brand">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="topbar-logo" onclick="showOverview()" style="cursor:pointer">Facebook Groups Analysis: Campaigner Dashboard</div>
   </div>
   <div class="topbar-meta">
@@ -914,6 +1041,7 @@
     1,000 Local Facebook Groups · Jul 2023 – Jul 2024 · 127,755 political comments
   </div>
 </div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
 <div class="layout">
   <!-- SIDEBAR -->
@@ -936,11 +1064,12 @@
         <p class="page-subtitle">
           
         <strong> <span style="color: #c12a2a">Polling and focus groups only tell part of the story.</span></strong> 
-         In WhatsApp chats, Facebook groups, and neighbourhood conversations, <emph>  people talk about politics in ways that don't always show up in formal research. </strong> Here, we analysed 1,000 local Facebook groups over the year leading up to the 2025 General Election, using AI to classify posts, identify themes, and track how political conversations unfolded organically across local communities.
+         In WhatsApp chats, Facebook groups, and neighbourhood conversations, people talk about politics in ways that don't always show up in formal research. Here, we analysed 1,000 local Facebook groups over the year leading up to the 2025 General Election, using AI to classify posts, identify themes, and track how political conversations unfolded organically across local communities.
 
         <br><br>
         This dashboard shares the key findings, insights, and narratives from that analysis, which contains many insights designed to help campaigners better understand the political landscape in the same way that it is understood by voters.
-        </div>
+        </p>
+      </div>
 
       <!-- HOME TABS -->
       <div class="home-tabs">
@@ -1001,8 +1130,8 @@
 
         <div class="footer">
           <div class="footer-logos">
-            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
-            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+            <a href = "https://campaignlab.uk/"><a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a> </a>
+            <a href = "https://categorum.ai/"><a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a></a>
           </div>
           <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
@@ -1011,30 +1140,41 @@
       <!-- INSIGHTS TAB -->
       <div id="homeTab-insights" class="home-tab-content">
         <div class="home-tab-body">
-          <p class="page-subtitle">Across the analysis, one theme in particular kept resurfacing: <strong>people's engagement with politics is predominantly local and personal.</strong> People are consistently more concerned by potholes, grocery prices and antisocial behaviour that they personally witness than any wider policy. People are by far more interested in what they see, feel, and experience in their daily lives than national rhetoric or abstract political debates. And they often struggle to connect the two, unsure how national politics relates to their local reality, reflecting generally poor communication by political bodies on what powers they have and the reasons behind their decisions. This disconnect has consequences, leading to widespread disengagement, hostility and a sense that politics is distant and that all politicians are inherently corrupt.</p>
+          <p class="page-subtitle"> Across the analysis, one theme in particular kept resurfacing: <strong> people's engagement with politics is predominantly local and personal.</strong> People are consistently more concerned by potholes, grocery prices and antisocial behaviour that they personally witness than any wider policy. This is reflected in our finding that <strong> dominant issues were Transport, Public services, Environmental, Crime, and Businesses.</strong> Together, these accounted for over half of all comments. <br> <br> This shows how people are by far more interested in what they see, feel, and experience in their daily lives than national rhetoric or abstract political debates. And they often struggle to connect the two, unsure how national politics relates to their local reality, reflecting generally poor communication by political bodies on what powers they have and the reasons behind their decisions. This disconnect has consequences, leading to widespread disengagement, hostility and a sense that politics is distant and that all politicians are inherently corrupt.</p>
         </div>
         <div class="footer">
           <div class="footer-logos">
-            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
-            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+            <a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a>
+            <a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a>
           </div>
           <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
+      <!-- BACKGROUND TAB -->
+      <div id="homeTab-background" class="home-tab-content">
+        <div class="home-tab-body">
+          <p class="home-tab-placeholder">Add background content here.</p>
+        </div>
+        <div class="footer">
+          <div class="footer-logos">
+            <a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a>
+            <a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a>
+          </div>
+          <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
+        </div>
+      </div>
 
       <!-- METHODOLOGY TAB -->
       <div id="homeTab-methodology" class="home-tab-content">
         <div class="home-tab-body">
-          <p class="page-subtitle"> The data in this dashboard comes from a curated section of the top 500 topics, with at least two topics per category. Political discourse is complex and multifaceted, so there is significant overlap between some categories, which is to be expected. 
-            However, our thesis point shines through clearly across the data: that local, tangible issues dominate political conversations in local Facebook groups, and that national politics is often seen as distant and disconnected from people's lived realities.
-          </p>
+          <p class="page-subtitle"> The data in this dashboard was categorised using a Large Language Model (LLM), which analysed posts and discussions from local Facebook groups and organised them into broad political <emph>issues</emph>, alongside more detailed <emph>categories</emph> and <emph>subcategories</emph> within each issue area. Rather than relying on predefined labels or manual coding frameworks, the model identified recurring themes organically from the data itself, allowing patterns in conversation to emerge naturally.<br><br>Using an LLM for both theme generation and classification helps reduce the risk of introducing individual researcher bias into the analysis. To ensure consistency and reliability, the model’s outputs were tested against human validation exercises, where samples of posts were independently reviewed and compared with the AI classifications.<br><br>Political discussion is inherently messy, overlapping, and context-dependent. Many conversations touch on multiple issues at once - for example, immigration discussions may also involve housing, the economy, or public services. As a result, there is significant overlap between some categories, which is to be expected. The categorisation framework should therefore be understood as a way of identifying dominant themes and patterns within discussion, rather than imposing rigid or mutually exclusive labels onto political conversations.</p>
 
         </div>
         <div class="footer">
           <div class="footer-logos">
-            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
-            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+            <a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a>
+            <a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a>
           </div>
           <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
@@ -1043,18 +1183,19 @@
       <!-- ABOUT US TAB -->
       <div id="homeTab-about" class="home-tab-content">
         <div class="home-tab-body">
-          <p class="home-tab-placeholder">Add about us content here.</p>
-        </div>
-        <div class="footer">
+          <p class="page-subtitle"><strong><span style="color: #c12a2a">Campaign Lab</span></strong> is a collaborative network of progressive campaigners, researchers, technologists, and data scientists working to better understand what makes campaigning effective in the UK. We bring together people from across politics, tech, and data science to test ideas, develop practical tools, and build evidence about what actually drives impact on the ground. <br><br> Campaigning depends on the dedication of thousands of volunteers and organisers every year, but much of that work still relies on assumptions, habits, and inherited practices rather than robust evidence. We believe campaigns should have access to better research, better data, and better ways of understanding what genuinely influences political outcomes. By running experiments, sharing findings, and building open tools, we aim to make campaigning more evidence-driven and collaborative. If you're interested in learning more about what we do, take a look at our website <a href=https://campaignlab.uk> here </a> <br><br> This dashboard was created using <strong><span style="color: #c12a2a">Categorum.ai</span></strong>, a platform built to support the analysis of complex and nuanced datasets using advanced AI technology. Categorum is designed for researchers, campaigners, and organisations working with large amounts of qualitative information, helping users categorise responses, identify patterns, and explore data more efficiently without losing important context or nuance. Check it out <a href="https://categorum.ai"> here.</a></p>
+          <div class="footer">
           <div class="footer-logos">
-            <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
-            <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+            <a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a>
+            <a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a>
           </div>
           <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
         </div>
       </div>
 
     </div>
+
+  </div>
 
     <!-- ISSUE DETAIL PAGE -->
     <div id="detailPage" class="page fade-in">
@@ -1091,8 +1232,8 @@
 
       <div class="footer">
         <div class="footer-logos">
-          <img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img">
-          <img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img">
+          <a href="https://campaignlab.uk/" target="_blank"><img src="images/campaign lab logo.png" alt="Campaign Lab" class="footer-logo-img"></a>
+          <a href="https://categorum.ai/" target="_blank"><img src="images/categorum logo.png" alt="Categorum" class="footer-logo-img"></a>
         </div>
         <span>Local Facebook Groups · UK · Jul 2023 – Jul 2024</span>
       </div>
@@ -1422,6 +1563,7 @@ function showDetail(issue) {
 
   renderSubcats(issue);
   renderIssueNotes(issue);
+  closeSidebarOnMobile();
   const sw = document.getElementById('toggleNoSummarySwitch');
   if (sw) sw.classList.toggle('on', showNoSummary);
   buildSidebar();
@@ -1506,21 +1648,23 @@ function renderSubcats(issue) {
             </div>
           </div>
         </div>
-        <div class="subcat-metrics">
-          <div class="subcat-metric">
-            <div class="subcat-metric-val highlight">${sub.likes_per_comment.toFixed(2)}</div>
-            <div class="subcat-metric-label">Likes per comment</div>
+        <div class="subcat-right">
+          <div class="subcat-metrics">
+            <div class="subcat-metric">
+              <div class="subcat-metric-val highlight">${sub.likes_per_comment.toFixed(2)}</div>
+              <div class="subcat-metric-label">Likes per comment</div>
+            </div>
+            <div class="subcat-metric">
+              <div class="subcat-metric-val">${sub.likes.toLocaleString()}</div>
+              <div class="subcat-metric-label">Likes</div>
+            </div>
+            <div class="subcat-metric">
+              <div class="subcat-metric-val">${sub.replies.toLocaleString()}</div>
+              <div class="subcat-metric-label">Replies</div>
+            </div>
           </div>
-          <div class="subcat-metric">
-            <div class="subcat-metric-val">${sub.likes.toLocaleString()}</div>
-            <div class="subcat-metric-label">Likes</div>
-          </div>
-          <div class="subcat-metric">
-            <div class="subcat-metric-val">${sub.replies.toLocaleString()}</div>
-            <div class="subcat-metric-label">Replies</div>
-          </div>
+          ${hasContent ? '<div class="subcat-see-more"><span class="see-label">See more</span><span class="arrow">→</span></div>' : ''}
         </div>
-        ${hasContent ? '<div class="subcat-chevron">▼</div>' : ''}
       </div>
       <div class="subcat-body" ${hasContent ? '' : 'style="display:none"'}>
         <div class="tabs">
@@ -1593,6 +1737,19 @@ function escapeHtml(text) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+// Close sidebar when navigating to a detail page on mobile
+function closeSidebarOnMobile() {
+  if (window.innerWidth <= 768) {
+    document.querySelector('.sidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('open');
+  }
 }
 
 function switchHomeTab(tab, btn) {
